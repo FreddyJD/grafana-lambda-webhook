@@ -1,0 +1,21 @@
+service: grafana-lambda-webhook
+frameworkVersion: "=1.45.1"
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  trigger:
+    handler: handler.trigger
+    events:
+      - http:
+          path: trigger
+          method: post
+    environment:
+      tplink_user: freddyxxx@therigy.com
+      tplink_password: xxxxxxxxx
+      tplink_device_name: Grafana Alert
